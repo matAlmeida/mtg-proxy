@@ -9,6 +9,10 @@
     "proxie",
     "card"
   ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/matAlmeida/mtg-proxy.git"
+  },
   "private": false,
   "bin": {
     "mtg-proxy": "bin/mtg-proxy"
