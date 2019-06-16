@@ -1,6 +1,6 @@
 {
   "name": "mtg-proxy",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Create MTG clean Proxie Cards using a MOL list as entry.",
   "keywords": [
     "magic",
