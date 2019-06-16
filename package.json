@@ -1,6 +1,6 @@
 {
   "name": "mtg-proxy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Create MTG clean Proxie Cards using a MOL list as entry.",
   "keywords": [
     "magic",
@@ -10,8 +10,8 @@
     "card"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/matAlmeida/mtg-proxy.git"
+    "type": "git",
+    "url": "https://github.com/matAlmeida/mtg-proxy.git"
   },
   "private": false,
   "bin": {
