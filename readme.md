@@ -26,9 +26,9 @@ $ mtg-proxy create --from="my-card-list.txt"
 Now you has your output:
 
 <p align="center">
-<img src="./docs/battle_screech.png" height="300" />
+<img src="https://raw.githubusercontent.com/matAlmeida/mtg-proxy/master/docs/battle_screech.png" height="300" />
 &nbsp &nbsp
-<img src="./docs/veteran_armorer.png" height="300" />
+<img src="https://raw.githubusercontent.com/matAlmeida/mtg-proxy/master/docs/veteran_armorer.png" height="300" />
 </p>
 
 # Options
