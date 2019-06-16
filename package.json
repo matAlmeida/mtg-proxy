@@ -1,0 +1,54 @@
+{
+  "name": "mtg-proxy",
+  "version": "0.1.1",
+  "description": "Create MTG clean Proxie Cards using a MOL list as entry.",
+  "keywords": [
+    "magic",
+    "mtg",
+    "magic the gathering",
+    "proxie",
+    "card"
+  ],
+  "private": false,
+  "bin": {
+    "mtg-proxy": "bin/mtg-proxy"
+  },
+  "scripts": {
+    "format": "prettier --write **/*.{js,json} && standard --fix",
+    "lint": "standard",
+    "test": "jest",
+    "watch": "jest --watch",
+    "snapupdate": "jest --updateSnapshot",
+    "coverage": "jest --coverage"
+  },
+  "files": [
+    "src",
+    "LICENSE",
+    "readme.md",
+    "docs",
+    "bin"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "gluegun": "^2.1.0",
+    "jimp": "^0.6.4"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "prettier": "^1.12.1",
+    "standard": "^12.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
+}
