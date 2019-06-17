@@ -1,7 +1,8 @@
 const path = require('path')
 const fs = require('fs')
-const api = require('../services/api')
 const Jimp = require('jimp')
+
+const api = require('../services/api')
 
 const template = path.join(__dirname, '..', 'assets', 'template.png')
 
@@ -22,12 +23,14 @@ module.exports = {
 
     let exportPath = path.resolve('.')
 
-    if (to && !filesystem.exists(to)) {
+    if (to) {
+      exportPath = path.resolve(to)
+    }
+
+    if (!filesystem.exists(to)) {
       print.error(
         `> The folder '${to}' doesn't exists yet! We are creating one for you...`
       )
-
-      exportPath = path.resolve(to)
 
       fs.mkdirSync(exportPath)
     }
@@ -49,7 +52,6 @@ module.exports = {
                 print.error('Something wrong happened:')
                 print.error(cardName)
                 print.error(e.response.data.details)
-                // print.error(e)
 
                 process.exit(1)
               })
@@ -66,6 +68,7 @@ module.exports = {
             return {
               quantity,
               fullName,
+              lowCaseName: fullName.replace(' ', '_').toLowerCase(),
               manaCost,
               typeLine: typeLine.replace('—', '-'),
               oracleText: oracleText.replace('—', '-'),
@@ -77,11 +80,11 @@ module.exports = {
       )
 
       await Promise.all(
-        cardsInfo.map(async card => {
+        cardsInfo.map(async (card, index) => {
           if (card) {
             try {
-              const cardLowName = card.fullName.replace(' ', '_').toLowerCase()
-              const cardFile = path.join(exportPath, `${cardLowName}.png`)
+              const cardFile = path.join(exportPath, `${card.lowCaseName}.png`)
+              cardsInfo[index].imagePath = cardFile
 
               const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK)
               const image = await Jimp.read(template)
