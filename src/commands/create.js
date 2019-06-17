@@ -40,72 +40,91 @@ module.exports = {
       const cardsInfo = await Promise.all(
         list.map(async item => {
           const [quantity, ...name] = item.split(' ')
-          const cardName = name.join(' ')
+          if (name.length > 0) {
+            const cardName = name.join(' ')
 
-          const cardInfo = await api.get(cardName)
+            const cardInfo = await api
+              .get(`/cards/named?fuzzy=${cardName}`)
+              .catch(e => {
+                print.error('Something wrong happened:')
+                print.error(cardName)
+                print.error(e.response.data.details)
+                // print.error(e)
 
-          const {
-            name: fullName,
-            mana_cost: manaCost,
-            type_line: typeLine,
-            oracle_text: oracleText,
-            power,
-            toughness
-          } = cardInfo.data
+                process.exit(1)
+              })
 
-          return {
-            quantity,
-            fullName,
-            manaCost,
-            typeLine: typeLine.replace('—', '-'),
-            oracleText: oracleText.replace('—', '-'),
-            power,
-            toughness
+            const {
+              name: fullName,
+              mana_cost: manaCost,
+              type_line: typeLine,
+              oracle_text: oracleText,
+              power,
+              toughness
+            } = cardInfo.data
+
+            return {
+              quantity,
+              fullName,
+              manaCost,
+              typeLine: typeLine.replace('—', '-'),
+              oracleText: oracleText.replace('—', '-'),
+              power,
+              toughness
+            }
           }
         })
       )
 
       await Promise.all(
         cardsInfo.map(async card => {
-          try {
-            const cardLowName = card.fullName.replace(' ', '_').toLowerCase()
-            const cardFile = path.join(exportPath, `${cardLowName}.png`)
+          if (card) {
+            try {
+              const cardLowName = card.fullName.replace(' ', '_').toLowerCase()
+              const cardFile = path.join(exportPath, `${cardLowName}.png`)
 
-            const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK)
-            const image = await Jimp.read(template)
+              const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK)
+              const image = await Jimp.read(template)
 
-            image
-              .print(font, 82, 77, card.fullName)
-              .print(
-                font,
-                82,
-                77,
-                {
-                  text: card.manaCost,
-                  alignmentX: Jimp.HORIZONTAL_ALIGN_RIGHT
-                },
-                640
-              )
-              .print(font, 82, 642, card.typeLine)
-              .print(font, 82, 717, card.oracleText, 640)
-              .print(
-                font,
-                82,
-                1026,
-                {
-                  text:
-                    card.power && card.toughness
-                      ? `${card.power} / ${card.toughness}`
-                      : '',
-                  alignmentX: Jimp.HORIZONTAL_ALIGN_RIGHT
-                },
-                640
-              )
-              .write(cardFile)
+              image
+                .print(font, 82, 77, card.fullName)
+                .print(
+                  font,
+                  82,
+                  77,
+                  {
+                    text: card.manaCost ? card.manaCost : '',
+                    alignmentX: Jimp.HORIZONTAL_ALIGN_RIGHT
+                  },
+                  640
+                )
+                .print(font, 82, 642, card.typeLine)
+                .print(
+                  font,
+                  82,
+                  717,
+                  { text: card.oracleText ? card.oracleText : '' },
+                  640
+                )
+                .print(
+                  font,
+                  82,
+                  1026,
+                  {
+                    text:
+                      card.power && card.toughness
+                        ? `${card.power} / ${card.toughness}`
+                        : '',
+                    alignmentX: Jimp.HORIZONTAL_ALIGN_RIGHT
+                  },
+                  640
+                )
+                .write(cardFile)
 
-            print.success(`> ${card.fullName} is Ready!`)
-          } catch (error) {
-            print.error(error)
+              print.success(`> ${card.fullName} is Ready!`)
+            } catch (error) {
+              print.error(error)
+            }
           }
         })
       )
