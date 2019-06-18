@@ -44,9 +44,9 @@ Now you has your output:
 # Roadmap
 
 - [x] Create cards from MOL list
-- [ ] Fix proxies sizes to fit in sleeves/shields
+- [x] Fix proxies sizes to fit in sleeves/shields
+- [x] Create a PDF with the right size to use as proxie and all cards by list quantity
 - [ ] Create cards from MTGA list
-- [ ] Create a PDF with the right size to use as proxie and all cards by list quantity
 
 # License
 
