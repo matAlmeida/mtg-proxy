@@ -1,0 +1,34 @@
+{
+  "name": "@matalmeida/mtg-proxy",
+  "version": "1.0.0-beta.1",
+  "description": "Create proxy cards for MTG with a clean visual",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matAlmeida/mtg-proxy.git"
+  },
+  "author": "Matheus Almeida <mat.almeida@live.com>",
+  "license": "MIT",
+  "bin": {
+    "mtg-proxy": "./bin/mtg-proxy"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "cli",
+    "mtg",
+    "magic the gathering",
+    "proxy",
+    "card"
+  ],
+  "dependencies": {
+    "arg": "^4.1.1",
+    "axios": "^0.19.0",
+    "chalk": "^2.4.2",
+    "esm": "^3.2.25",
+    "fs-jetpack": "^2.2.2",
+    "html5-to-pdf": "^3.1.3",
+    "jimp": "^0.6.4",
+    "listr": "^0.14.3"
+  }
+}
