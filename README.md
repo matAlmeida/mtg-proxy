@@ -20,8 +20,10 @@ Create a file with a cards list, with the following format:
 Now you can create your proxies just running:
 
 ```sh
-$ mtg-proxy create --from="my-card-list.txt"
+$ mtg-proxy ./my-card-list.txt ./export-folder
 ```
+
+Note: The `export folder` is a optional argument
 
 Now you has your output:
 
@@ -30,16 +32,6 @@ Now you has your output:
 &nbsp &nbsp
 <img src="https://raw.githubusercontent.com/matAlmeida/mtg-proxy/master/docs/veteran_armorer.png" height="300" />
 </p>
-
-# Options
-
-- ### Creating the files inside a folder
-
-  When you run the command it create the proxies inside your current folder. You can create inside another folder using th `--to` parameter:
-
-  ```sh
-  $ mtg-proxy create --from="my-card-list.txt" --to="./my-proxies-folder"
-  ```
 
 # Roadmap
 
