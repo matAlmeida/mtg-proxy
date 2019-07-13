@@ -122,20 +122,22 @@ async function fetchAllCards(options) {
   const listPath = filesystem.path(cardListPath);
   const list = filesystem.read(listPath, "utf8").split(/\r?\n/);
 
-  const tasks = list.map(item => {
-    const [quantity, ...name] = item.split(/ |\t/);
-    if (name.length > 0) {
-      const cardName = name.join(" ");
+  const tasks = list
+    .map(item => {
+      const [quantity, ...name] = item.split(/ |\t/);
+      if (name.length > 0) {
+        const cardName = name.join(" ");
 
-      return {
-        title: cardName,
-        task: () =>
-          fetchCard({ quantity, cardName }, options).then(cardInfo =>
-            options.cardsList.push(cardInfo)
-          )
-      };
-    }
-  });
+        return {
+          title: cardName,
+          task: () =>
+            fetchCard({ quantity, cardName }, options).then(cardInfo =>
+              options.cardsList.push(cardInfo)
+            )
+        };
+      }
+    })
+    .filter(item => item !== undefined);
 
   return new Listr(tasks, { concurrent: true });
 }
