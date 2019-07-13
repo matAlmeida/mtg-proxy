@@ -24,7 +24,5 @@ export async function run(args) {
     const options = parseArgs2Options(args);
 
     await create(options);
-  } catch (error) {
-    console.log(error.message);
-  }
+  } catch (error) {}
 }
