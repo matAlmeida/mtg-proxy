@@ -143,7 +143,7 @@ async function fetchAllCards(options) {
 }
 
 async function createPDF(options) {
-  const { exportPath, cardsList } = options;
+  const { exportPath, cardsList, paperSize, outputName } = options;
 
   const cardsHtml = cardsList.reduce((allCards, card) => {
     const image = fs.readFileSync(card.imagePath);
@@ -195,9 +195,12 @@ async function createPDF(options) {
 
   const html5ToPDF = new HTML5ToPDF({
     inputBody: resultHtml,
-    outputPath: path.join(exportPath, "output.pdf"),
+    outputPath: path.join(
+      exportPath,
+      outputName ? `${outputName}.pdf` : "output.pdf"
+    ),
     options: {
-      pageSize: "A4",
+      pageSize: paperSize,
       marginsType: 1
     }
   });
