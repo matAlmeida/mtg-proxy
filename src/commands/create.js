@@ -89,13 +89,6 @@ async function fetchCard({ quantity, cardName }, options) {
       .print(
         font,
         82,
-        717,
-        { text: cardInfo.oracleText ? cardInfo.oracleText : "" },
-        640
-      )
-      .print(
-        font,
-        82,
         1026,
         {
           text:
@@ -105,8 +98,17 @@ async function fetchCard({ quantity, cardName }, options) {
           alignmentX: Jimp.HORIZONTAL_ALIGN_RIGHT
         },
         640
-      )
+      );
+
+    cardInfo.oracleText.split("\n").reduce((height, text) => {
+      image.print(font, 82, 717 + height, { text: text ? text : "" }, 630);
+
+      return height + Jimp.measureTextHeight(font, text, 630) + 10;
+    }, 0);
+
+    image
       .resize(227, Jimp.AUTO)
+      .quality(100)
       .write(cardInfo.imagePath, e => {
         if (e) {
           reject(e);
