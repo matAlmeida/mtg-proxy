@@ -1,6 +1,6 @@
 # mtg-proxy
 
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/matalmeida/mtg-proxy/master.svg)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/matalmeida/mtg-proxy.svg)
 ![NPM](https://img.shields.io/npm/l/mtg-proxy.svg)
 ![NPM Downloads](https://img.shields.io/npm/dt/mtg-proxy.svg)
 
