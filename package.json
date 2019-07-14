@@ -1,6 +1,6 @@
 {
   "name": "mtg-proxy",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "Create proxy cards for MTG with a clean visual",
   "repository": {
     "type": "git",
