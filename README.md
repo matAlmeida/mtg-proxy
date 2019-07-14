@@ -37,6 +37,24 @@ Now you has your output:
 <img src="https://raw.githubusercontent.com/matAlmeida/mtg-proxy/master/docs/veteran_armorer.png" height="300" />
 </p>
 
+## --help
+
+```sh
+Usage:
+  mtg-proxy <card-list-path> [<export-path>] [--output=<name>] [--papper=<size>]
+  mtg-proxy -h | --help
+  mtg-proxy --version
+
+Options:
+  <card-list-path>      Path to a valid MOL card list
+  <export-path>         Path where the output PDF will be saved [default: current directory].
+  -h --help             Show this screen.
+  --version             Show version.
+  (--output|-o)=<name>  Name of output PDF.
+  (--papper|-p)=<size>  Papper size [default: A4].
+                        ('A3', 'A4', 'Legal', 'Letter' or 'Tabloid')
+```
+
 # Roadmap
 
 - [x] Create cards from MOL list
