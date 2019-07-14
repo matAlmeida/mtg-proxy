@@ -160,6 +160,14 @@ async function createPDF(options) {
     return allCards;
   }, []);
 
+  const cardsPadding = {
+    A3: "2.445em",
+    A4: "1.75em",
+    Legal: "0.56em",
+    Letter: "1.06em",
+    Tabloid: "0.263em"
+  };
+
   const resultHtml = `<!DOCTYPE html>
       <html>
       <head>
@@ -181,7 +189,7 @@ async function createPDF(options) {
       }
 
       .card {
-        padding: 1.75em 0;
+        padding: ${cardsPadding[paperSize]} 0;
       }
       </style>
       </head>
